@@ -1,13 +1,10 @@
 package com.codetreatise.bean;
 
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Ram Alapure
@@ -26,7 +23,8 @@ public class User {
 	private String firstName;
 	
 	private String lastName;
-	
+
+	@Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
 	private LocalDate dob;
 	
 	private String gender;

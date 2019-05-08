@@ -14,7 +14,18 @@ public enum FxmlView {
 		public String getFxmlFile() {
             return "/fxml/User.fxml";
         }
-    }, 
+    },
+    GESTION_ENTREGAS {
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("gestion.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/geInditex.fxml";
+        }
+    },
     LOGIN {
         @Override
 		public String getTitle() {

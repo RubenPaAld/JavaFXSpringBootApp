@@ -44,7 +44,6 @@ public class Main extends Application {
         stageManager.switchScene(FxmlView.LOGIN);
     }
 
-    
     private ConfigurableApplicationContext springBootApplicationContext() {
         SpringApplicationBuilder builder = new SpringApplicationBuilder(Main.class);
         String[] args = getParameters().getRaw().stream().toArray(String[]::new);

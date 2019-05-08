@@ -1,10 +1,32 @@
 /* CSS for app */
-
-.btnGreen{
-	-fx-background-color:  #3cbc53;
+.cmb {
+	-fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, white;
+	-fx-background-insets: 0 0 -1 0, 0, 1, 2;
+	-fx-background-radius: 3px, 3px, 2px, 1px;
 }
 
-.background{
-	-fx-background-color: DODGERBLUE;
+#cmbCampana, #cmbDestinos, #cmbProveedor {
+	-fx-body-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, white;
+	-fx-body-radius: 30px, 3px, 2px, 1px;
 }
 
+.lbl-count {
+	-fx-background-color: black;
+	-fx-background-radius: 5;
+	-fx-text-fill: white;
+	-fx-text-alignment: center;
+	-fx-opacity: 0.85;
+	-fx-font-size: 12;
+}
+
+.cell-filter {
+	-fx-padding: 0 50 0 0;
+}
+
+.txt-number {
+	-fx-alignment: center-right;
+}
+
+.col-num {
+	-fx-alignment: CENTER-RIGHT;
+}

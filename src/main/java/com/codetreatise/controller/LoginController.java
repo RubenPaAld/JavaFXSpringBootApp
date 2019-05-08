@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.codetreatise.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.codetreatise.config.StageManager;
-import com.codetreatise.service.UserService;
 import com.codetreatise.view.FxmlView;
 
 import javafx.event.ActionEvent;
@@ -21,13 +21,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-/**
- * @author Ram Alapure
- * @since 05-04-2017
- */
-
 @Controller
-public class LoginController implements Initializable{
+public class LoginController implements Initializable {
 
 	@FXML
     private Button btnLogin;
@@ -43,7 +38,10 @@ public class LoginController implements Initializable{
     
     @Autowired
     private UserService userService;
-    
+
+	@Autowired
+	private CadenaService colorService;
+
     @Lazy
     @Autowired
     private StageManager stageManager;
@@ -69,7 +67,7 @@ public class LoginController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		System.out.println(colorService.findAll());
 	}
 
 }
