@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name="entrega")
+@Table(name="entregaPedidos")
 public class Entrega {
 
     @Id
@@ -98,19 +98,19 @@ public class Entrega {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Entrega entrega = (Entrega) o;
-        return numero == entrega.numero &&
-                calidad == entrega.calidad &&
-                metrosPedidos == entrega.metrosPedidos &&
-                metrosEntrados == entrega.metrosEntrados &&
-                metrosPendientes == entrega.metrosPendientes &&
-                Objects.equals(tipo, entrega.tipo) &&
-                Objects.equals(campana, entrega.campana) &&
-                Objects.equals(destino, entrega.destino) &&
-                Objects.equals(proveedor, entrega.proveedor) &&
-                Objects.equals(comprador, entrega.comprador) &&
-                Objects.equals(descripcion, entrega.descripcion) &&
-                Objects.equals(fDisponible, entrega.fDisponible);
+        Entrega entregaPedidos = (Entrega) o;
+        return numero == entregaPedidos.numero &&
+                calidad == entregaPedidos.calidad &&
+                metrosPedidos == entregaPedidos.metrosPedidos &&
+                metrosEntrados == entregaPedidos.metrosEntrados &&
+                metrosPendientes == entregaPedidos.metrosPendientes &&
+                Objects.equals(tipo, entregaPedidos.tipo) &&
+                Objects.equals(campana, entregaPedidos.campana) &&
+                Objects.equals(destino, entregaPedidos.destino) &&
+                Objects.equals(proveedor, entregaPedidos.proveedor) &&
+                Objects.equals(comprador, entregaPedidos.comprador) &&
+                Objects.equals(descripcion, entregaPedidos.descripcion) &&
+                Objects.equals(fDisponible, entregaPedidos.fDisponible);
     }
 
     @Override
@@ -140,16 +140,26 @@ public class Entrega {
 package com.codetreatise.bean;
 
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
+import javafx.scene.control.CheckBox;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Entity
 @Table(name="pedido")
 @Access(AccessType.PROPERTY)
 public class Pedido implements Serializable {
+
+    private BooleanProperty selected;
 
     private IntegerProperty  numero;
 
@@ -171,7 +181,10 @@ public class Pedido implements Serializable {
 
     private BooleanProperty completado;
 
+    private List<EntregaPedido> entregaPedidos;
+
     public Pedido() {
+        this.selected = new SimpleBooleanProperty(false);
         this.numero = new SimpleIntegerProperty();
         this.campana = new SimpleObjectProperty<>();
         this.cadena = new SimpleObjectProperty<>();
@@ -179,9 +192,10 @@ public class Pedido implements Serializable {
         this.descripcion = new SimpleStringProperty();
         this.materiaPrima = new SimpleObjectProperty<>();
         this.metros = new SimpleIntegerProperty();
-        this.fechaPedido = new SimpleObjectProperty();
+        this.fechaPedido = new SimpleObjectProperty<>();
         this.observaciones = new SimpleStringProperty();
         this.completado = new SimpleBooleanProperty();
+        this.entregaPedidos = new ArrayList<>();
     }
     @Id
     @Column(name = "numero")
@@ -196,6 +210,15 @@ public class Pedido implements Serializable {
 
     public void setNumero(int numero) {
         this.numero.set(numero);
+    }
+
+    @OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER)
+    public List<EntregaPedido> getEntregaPedidos() {
+        return entregaPedidos;
+    }
+
+    public void setEntregaPedidos(List<EntregaPedido> entregaPedidos) {
+        this.entregaPedidos = entregaPedidos;
     }
 
     @ManyToOne()
@@ -315,9 +338,23 @@ public class Pedido implements Serializable {
         this.completado.set(completado);
     }
 
+    @Transient
+    public boolean isSelected() {
+        return selected.get();
+    }
+
+    public BooleanProperty selectedProperty() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected.set(selected);
+    }
+
     @Override
     public String toString() {
         return "Pedido{" +
+                "seleccionado " + selected +
                 "numero=" + numero +
                 ", campana=" + campana +
                 ", cadena=" + cadena +
@@ -328,6 +365,7 @@ public class Pedido implements Serializable {
                 ", fechaPedido=" + fechaPedido +
                 ", observaciones=" + observaciones +
                 ", completado=" + completado +
+                ", entregas " + entregaPedidos.size() +
                 '}';
     }
 }

@@ -167,9 +167,9 @@ public class MateriaPrima implements Serializable {
         this.numero = new SimpleIntegerProperty();
         this.descripcion = new SimpleStringProperty();
         this.nombre = new SimpleStringProperty();
-        this.calidad = new SimpleObjectProperty();
-        this.color = new SimpleObjectProperty();
-        this.tipoMateria = new SimpleObjectProperty();
+        this.calidad = new SimpleObjectProperty<>();
+        this.color = new SimpleObjectProperty<>();
+        this.tipoMateria = new SimpleObjectProperty<>();
     }
     @Id
     @Column(name = "numero")

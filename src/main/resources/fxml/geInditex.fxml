@@ -5,8 +5,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -24,18 +26,14 @@
          <content>
             <TableView fx:id="tablePedidos" opacity="0.7" prefWidth="50.0">
               <columns>
-                    <TableColumn fx:id="tableColumNumero" styleClass="col-num" prefWidth="75.0" text="Numero" />
-                    <TableColumn fx:id="tableColumTipo" prefWidth="75.0" text="Tipo" />
-                    <TableColumn fx:id="tableColumCampana" prefWidth="75.0" text="Campaña" />
-                    <TableColumn fx:id="tableColumComprador" prefWidth="150.0" text="Comprador" />
-                    <TableColumn fx:id="tableColumDestino" prefWidth="150" text="Destino" />
-                    <TableColumn fx:id="tableColumProveedor" prefWidth="150.0" text="Proveedor" />
-                    <TableColumn fx:id="tableColumCalidad" styleClass="col-num" prefWidth="75.0" text="Calidad" />
-                    <TableColumn fx:id="tableColumDescripcion" prefWidth="150.0" text="Descripcion" />
-                    <TableColumn fx:id="tableColumMetrosPedidos" styleClass="col-num" prefWidth="85.0" text="M. Pedidos" />
-                    <TableColumn fx:id="tableColumMetrosEntrados" styleClass="col-num" prefWidth="85.0" text="M. Entrados" />
-                    <TableColumn fx:id="tableColumMetrosPendientes" styleClass="col-num" prefWidth="85.0" text="M. Pendientes" />
-                    <TableColumn fx:id="tableColumFechaDisponible" prefWidth="100" text="F. Disponible" />
+                    <TableColumn fx:id="tableColumCheck" prefWidth="75.0" resizable="false" styleClass="col" />
+                    <TableColumn fx:id="tableColumNumero" prefWidth="75.0" resizable="false" styleClass="col-num" text="Numero" />
+                    <TableColumn fx:id="tableColumCadena" prefWidth="150.0" styleClass="col" text="Cadena" />
+                    <TableColumn fx:id="tableColumCampana" prefWidth="150.0" resizable="false" styleClass="col" text="Campaña" />
+                    <TableColumn fx:id="tableColumMateriaPrima" prefWidth="250.0" styleClass="col" text="Materia Prima" />
+                    <TableColumn fx:id="tableColumProveedor" prefWidth="250.0" styleClass="col" text="Proveedor" />
+                    <TableColumn fx:id="tableColumMetros" prefWidth="75.0" resizable="false" styleClass="col-num" text="Metros" />
+                    <TableColumn fx:id="tableColumFechaPedido" prefWidth="150" resizable="false" styleClass="col" text="Fecha. Creacion" />
               </columns>
             </TableView>
          </content>
@@ -45,7 +43,7 @@
       </ScrollPane>
    </center>
    <top>
-      <Accordion>
+      <Accordion fx:id="accordion">
         <panes>
           <TitledPane fx:id="paneFiltros" text="Filtros">
             <content>
@@ -53,14 +51,23 @@
                      <children>
                         <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
+                              <Label text="Pedido">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Separator />
                               <ToolBar style="-fx-background-color: none;">
                                  <items>
-                                    <Label contentDisplay="RIGHT" text="Campaña">
+                                    <Label contentDisplay="RIGHT" text="Cadena">
                                        <graphic>
-                                          <CheckComboBox fx:id="cmbCampana" prefWidth="110.0" />
+                                          <CheckComboBox fx:id="cmbCadenas" prefWidth="110.0" />
                                        </graphic>
                                     </Label>
-                                    <Label fx:id="lblCountCampanas" styleClass="lbl-count" text="0">
+                                    <Label fx:id="lblCountCadenas" alignment="CENTER" styleClass="lbl-count" text="0">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -68,36 +75,20 @@
                                           <Insets bottom="2.5" left="5.0" right="5.0" top="2.5" />
                                        </padding>
                                     </Label>
-                                    <Label contentDisplay="RIGHT" text="Cadena">
+                                    <Label contentDisplay="RIGHT" text="Campaña">
                                        <graphic>
-                                          <ComboBox fx:id="cmbCadena" prefWidth="110.0" styleClass="cmb" />
+                                          <CheckComboBox fx:id="cmbCampana" prefWidth="110.0" />
                                        </graphic>
                                        <padding>
                                           <Insets left="5.0" />
                                        </padding>
                                     </Label>
-                                    <Label contentDisplay="RIGHT" text="Destino">
-                                       <graphic>
-                                          <CheckComboBox fx:id="cmbDestinos" prefWidth="110.0" />
-                                       </graphic>
+                                    <Label fx:id="lblCountCampanas" styleClass="lbl-count" text="0">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
                                        <padding>
-                                          <Insets left="5.0" />
-                                       </padding>
-                                    </Label>
-                                     <Label fx:id="lblCountDestinos" styleClass="lbl-count" text="0">
-                                         <font>
-                                             <Font name="System Bold" size="12.0" />
-                                         </font>
-                                         <padding>
-                                             <Insets bottom="2.5" left="5.0" right="5.0" top="2.5" />
-                                         </padding>
-                                     </Label>
-                                    <Label contentDisplay="RIGHT" text="Pedido">
-                                       <graphic>
-                                          <TextField fx:id="txtPedido" styleClass="txt-number" />
-                                       </graphic>
-                                       <padding>
-                                          <Insets left="5.0" right="5.0" />
+                                          <Insets bottom="2.5" left="5.0" right="5.0" top="2.5" />
                                        </padding>
                                     </Label>
                                     <Label contentDisplay="RIGHT" text="Proveedor">
@@ -113,19 +104,128 @@
                                           <Insets bottom="2.5" left="5.0" right="5.0" top="2.5" />
                                        </padding>
                                     </Label>
-                                    <Label contentDisplay="RIGHT" text="Metros p.">
+                                    <Label contentDisplay="RIGHT" text="Metros totales">
                                        <graphic>
-                                          <ComboBox fx:id="cmbOp" prefWidth="75.0" styleClass="cmb" />
+                                          <ComboBox fx:id="cmbOpMetrosPedido" prefWidth="75.0" styleClass="cmb" />
                                        </graphic>
                                        <padding>
                                           <Insets left="5.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="txtMetros" styleClass="txt-number" />
+                                    <TextField fx:id="txtMetrosPedido" styleClass="txt-number" />
+                                    <Label contentDisplay="RIGHT" text="Fecha de pedido.">
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <DatePicker fx:id="dpFechaPedidoDesde" prefWidth="124.0" />
+                                    <DatePicker fx:id="dpFechaPedidoHasta" prefWidth="124.0" />
                                  </items>
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin></ToolBar>
+                              <ToolBar style="-fx-background-color: none;">
+                                 <items>
+                                    <Label contentDisplay="RIGHT" text="Materia prima">
+                                       <graphic>
+                                          <CheckComboBox fx:id="cmbMateriasPrimas" prefWidth="110.0" />
+                                       </graphic>
+                                    </Label>
+                                    <Label fx:id="lblCountMateriasPrimas" styleClass="lbl-count" text="0">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="2.5" left="5.0" right="5.0" top="2.5" />
+                                       </padding>
+                                    </Label>
+                                 </items>
+                              </ToolBar>
+                              <Label text="Entrega">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="10.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Separator prefWidth="200.0" />
+                              <ToolBar style="-fx-background-color: none;">
+                                 <items>
+                                    <Label contentDisplay="RIGHT" text="Transporte">
+                                       <graphic>
+                                          <CheckComboBox fx:id="cmbTransportes" prefWidth="110.0" />
+                                       </graphic>
+                                    </Label>
+                                    <Label fx:id="lblCountTransportes" styleClass="lbl-count" text="0">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="2.5" left="5.0" right="5.0" top="2.5" />
+                                       </padding>
+                                    </Label>
+                                    <Label contentDisplay="RIGHT" text="Estado">
+                                       <graphic>
+                                          <CheckComboBox fx:id="cmbEstadosEntregas" prefWidth="110.0" />
+                                       </graphic>
+                                    </Label>
+                                    <Label fx:id="lblCountEstadosEntregas" styleClass="lbl-count" text="0">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="2.5" left="5.0" right="5.0" top="2.5" />
+                                       </padding>
+                                    </Label>
+                                    <Label contentDisplay="RIGHT" text="Destino">
+                                       <graphic>
+                                          <CheckComboBox fx:id="cmbDestinos" prefWidth="110.0" />
+                                       </graphic>
+                                    </Label>
+                                    <Label fx:id="lblCountDestinos" styleClass="lbl-count" text="0">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="2.5" left="5.0" right="5.0" top="2.5" />
+                                       </padding>
+                                    </Label>
+                                    <Label contentDisplay="RIGHT" text="Metros entrega">
+                                       <graphic>
+                                          <ComboBox fx:id="cmbOpMetrosEntrega" prefWidth="75.0" styleClass="cmb" />
+                                       </graphic>
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField fx:id="txtMetrosEntrega" styleClass="txt-number" />
+                                    <Label contentDisplay="RIGHT" text="Fecha de salida">
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <DatePicker fx:id="dpFechaSalidaDesde" prefWidth="124.0" />
+                                    <DatePicker fx:id="dpFechaSalidaHasta" prefWidth="124.0" />
+                                 </items>
+                              </ToolBar>
+                              <ToolBar style="-fx-background-color: none;">
+                                 <items>
+                                    <Label contentDisplay="RIGHT" text="Fecha estimada" />
+                                    <DatePicker fx:id="dpFechaEstimadaDesde" prefWidth="124.0" />
+                                    <DatePicker fx:id="dpFechaEstimadaHasta" prefWidth="124.0" />
+                                    <Label contentDisplay="RIGHT" text="Fecha de llegada">
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <DatePicker fx:id="dpFechaLlegadaDesde" prefWidth="124.0" />
+                                    <DatePicker fx:id="dpFechaLlegadaHasta" prefWidth="124.0" />
+                                 </items>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </ToolBar>
                               <ToolBar orientation="VERTICAL" style="-fx-background-color: none;">
                                  <items>
                                     <ButtonBar>
@@ -148,10 +248,11 @@
       </Accordion>
    </top>
    <bottom>
-      <ButtonBar fx:id="btnBar" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ButtonBar fx:id="btnBar" prefHeight="40.0" BorderPane.alignment="CENTER">
         <buttons>
-          <Button fx:id="btnHelp" mnemonicParsing="false" text="Ayuda" ButtonBar.buttonData="LEFT" />
             <Button fx:id="btnNew" mnemonicParsing="false" text="Nuevo" />
+            <Label fx:id="lblSelect" text="Seleccionados: 0" ButtonBar.buttonData="LEFT" />
+           <!--<Button fx:id="btnHelp" mnemonicParsing="false" text="Ayuda" ButtonBar.buttonData="LEFT" />-->
         </buttons>
          <padding>
             <Insets top="5.0" />

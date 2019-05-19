@@ -183,7 +183,7 @@ public class Entrega implements Serializable {
         this.metrosPedidos = new SimpleIntegerProperty();
         this.metrosEntrados = new SimpleIntegerProperty();
         this.metrosPendientes = new SimpleIntegerProperty();
-        this.fDisponible = new SimpleObjectProperty();
+        this.fDisponible = new SimpleObjectProperty<>();
 
     }
 
@@ -199,7 +199,7 @@ public class Entrega implements Serializable {
         this.metrosPedidos = new SimpleIntegerProperty(metrosPedidos);
         this.metrosEntrados = new SimpleIntegerProperty(metrosEntrados);
         this.metrosPendientes = new SimpleIntegerProperty(metrosPendientes);
-        this.fDisponible = new SimpleObjectProperty(fDisponible);
+        this.fDisponible = new SimpleObjectProperty<>(fDisponible);
     }
 
     @Id

@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 public class StageManager {
 
     private static final Logger LOG = getLogger(StageManager.class);
-    private final Stage primaryStage;
+    public static Stage primaryStage;
     private final SpringFXMLLoader springFXMLLoader;
 
     public StageManager(SpringFXMLLoader springFXMLLoader, Stage stage) {

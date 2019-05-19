@@ -1,6 +1,7 @@
 package com.codetreatise.service.impl;
 
 import com.codetreatise.bean.EntregaPedido;
+import com.codetreatise.bean.Pedido;
 import com.codetreatise.repository.EntregaPedidoRepository;
 import com.codetreatise.service.EntregaPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,9 @@ public class EntregaPedidoServiceImpl implements EntregaPedidoService {
 	public void deleteInBatch(List<EntregaPedido> tipos) {
 		entregaPedidoRepository.deleteInBatch(tipos);
 	}
-	
+
+	@Override
+	public List<EntregaPedido> getEntregas(Pedido pedido) {
+		return entregaPedidoRepository.findByPedido(pedido);
+	}
 }

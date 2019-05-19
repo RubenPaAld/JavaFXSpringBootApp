@@ -3,6 +3,16 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/fxml/geInditex.fxml" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/images/airplane.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/images/cadenas/1.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/images/cadenas/2.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/images/cadenas/3.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/images/cadenas/5.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/images/cadenas/6.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/images/cadenas/7.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/images/cadenas/8.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/images/delivery-truck.png" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/main/resources/images/search.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/images/ship.png" charset="ISO-8859-1" />
   </component>
 </project>

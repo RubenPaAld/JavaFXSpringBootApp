@@ -17,7 +17,7 @@ public class Proveedor {
     public Proveedor() {
         numero = new SimpleIntegerProperty();
         nombre = new SimpleStringProperty();
-        pais = new SimpleObjectProperty();
+        pais = new SimpleObjectProperty<>();
     }
 
     @Id

@@ -16,7 +16,7 @@ public class Destino {
     public Destino() {
         numero = new SimpleIntegerProperty();
         nombre = new SimpleStringProperty();
-        cadena = new SimpleObjectProperty();
+        cadena = new SimpleObjectProperty<>();
     }
 
     @Id

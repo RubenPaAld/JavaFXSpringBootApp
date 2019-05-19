@@ -5,7 +5,7 @@
 	-fx-background-radius: 3px, 3px, 2px, 1px;
 }
 
-#cmbCampana, #cmbDestinos, #cmbProveedor {
+#cmbCadenas,#cmbMateriasPrimas , #cmbCampana, #cmbDestinos, #cmbProveedor, #cmbDestinos, #cmbTransportes, #cmbEstadosEntregas {
 	-fx-body-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, white;
 	-fx-body-radius: 30px, 3px, 2px, 1px;
 }
@@ -19,6 +19,28 @@
 	-fx-font-size: 12;
 }
 
+/*.table-row-cell:filled:selected {
+	-fx-background: -fx-control-inner-background ;
+	-fx-background-color: -fx-table-cell-border-color, -fx-background ;
+	-fx-background-insets: 0, 0 0 1 0 ;
+	-fx-table-cell-border-color: derive(-fx-color, 5%);
+}*/
+
+
+.table-view {
+	-fx-focus-color: transparent;
+}
+
+/*.table-view  {
+	-selected-color:red;
+	-fx-focus-color: transparent;
+}
+
+.table-row-cell:selected{
+	-fx-background-color: -selected-color;
+
+}*/
+
 .cell-filter {
 	-fx-padding: 0 50 0 0;
 }
@@ -28,5 +50,9 @@
 }
 
 .col-num {
-	-fx-alignment: CENTER-RIGHT;
+	-fx-alignment: TOP-RIGHT;
+}
+
+.col {
+	-fx-alignment: TOP-CENTER;
 }

@@ -3,9 +3,17 @@ package com.codetreatise.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import com.codetreatise.bean.*;
+import com.codetreatise.parameters.EntregaParameters;
+import com.codetreatise.parameters.LocalDateIntervalParameter;
+import com.codetreatise.parameters.PedidoParameters;
 import com.codetreatise.service.*;
+import com.codetreatise.utils.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -39,13 +47,25 @@ public class LoginController implements Initializable {
     @Autowired
     private UserService userService;
 
+    @Autowired
+	private CampanaService campanaService;
+
 	@Autowired
-	private CadenaService colorService;
+	private CadenaService cadenaService;
+
+	@Autowired
+	private ProveedorService proveedorService;
+
+	@Autowired
+	private DestinoService destinoService;
+
+	@Autowired
+	private PedidoService pedidoService;
 
     @Lazy
     @Autowired
     private StageManager stageManager;
-        
+
 	@FXML
     private void login(ActionEvent event) throws IOException{
     	if(userService.authenticate(getUsername(), getPassword())){
@@ -67,7 +87,14 @@ public class LoginController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println(colorService.findAll());
+
+
+		List<Pedido> pedidos = pedidoService.findByCriteria(null,null);
+
+		System.out.println(pedidos.size());
+
+		for (Pedido pedido: pedidos)
+			System.out.println(pedido.toString() + '\n');
 	}
 
 }

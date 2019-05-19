@@ -1,11 +1,16 @@
 package com.codetreatise.service.impl;
 
-import com.codetreatise.bean.Pedido;
+import com.codetreatise.bean.*;
+import com.codetreatise.parameters.EntregaParameters;
+import com.codetreatise.parameters.PedidoParameters;
 import com.codetreatise.repository.PedidoRepository;
 import com.codetreatise.service.PedidoService;
+import com.codetreatise.specs.PedidoSpecs;
+import com.codetreatise.utils.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -48,5 +53,9 @@ public class PedidoServiceImpl implements PedidoService {
 	public void deleteInBatch(List<Pedido> tipos) {
 		pedidoRepository.deleteInBatch(tipos);
 	}
-	
+
+	@Override
+	public List<Pedido> findByCriteria(PedidoParameters p, EntregaParameters e) {
+		return pedidoRepository.findAll(PedidoSpecs.getPedidoBySpecs(p, e));
+	}
 }
